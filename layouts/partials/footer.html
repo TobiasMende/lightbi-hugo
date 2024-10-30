@@ -1,3 +1,4 @@
+{{ $current := . }}
 {{ if eq .Type "page" }}
 {{ partial "page_meta.html" . }}
 {{ end }}
@@ -34,7 +35,22 @@
         </ul>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-12">
+          <nav class="navbar navbar-expand-lg justify-content-center">
+          <ul class="navbar-nav mr-auto">
+          {{ range .Site.Menus.footer.ByWeight }}
+          <li class="nav-item">
+            {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+            {{ $active = or $active (eq .Name $current.Title) }}
+            <a class="nav-link {{ if $active }} active {{ end }}" title="{{ .Name }}"
+              href="{{ .URL  | relLangURL }}"> {{ .Name }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </nav>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12">
         <p class="credits copyright text-muted">
