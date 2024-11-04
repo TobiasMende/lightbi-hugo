@@ -20,7 +20,7 @@
   <div class="intro-header no-img mt-10">
     <div class="container">
       <div class="row justify-content-center">
-        {{ if or ( eq .Type "post")  ( eq .Type "notes") ( eq .Type "collections") }}
+        {{ if or ( eq .Type "post") ( eq .Type "blog") ( eq .Type "notes") ( eq .Type "collections") }}
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
           {{ end }}
 
@@ -61,7 +61,7 @@
               {{ end }}
 
               {{if .Page.IsPage}}
-              {{ if eq .Type "post" }}
+              {{ if or (eq .Type "post") (eq .Type "blog") }}
               {{ partial "post_meta.html" .}}
               {{ end }}
               {{ end }}
@@ -70,7 +70,7 @@
           {{ if ne .Type "blog" }}
         </div>
         {{ end }}
-        {{ if or ( eq .Type "post")  ( eq .Type "notes") ( eq .Type "collections") }}
+        {{ if or ( eq .Type "post") ( eq .Type "blog") ( eq .Type "notes") ( eq .Type "collections") }}
       </div>
       {{ end }}
     </div>
